@@ -25,8 +25,6 @@ SRC =  ft_printf.c \
 	ft_u.c \
 	ft_upperx.c \
 	ft_x.c \
-	
-all:	$(NAME)
 
 all: $(NAME)
 
