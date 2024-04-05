@@ -6,31 +6,40 @@
 #    By: amasiuk <amasiuk@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/26 12:48:57 by amasiuk           #+#    #+#              #
-#    Updated: 2024/04/04 17:47:31 by amasiuk          ###   ########.fr        #
+#    Updated: 2024/04/05 17:18:52 by amasiuk          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 CC = gcc
-LIBC = ar rc
-FLAGS = -Wall -Wextra -Werror
-SRCS = ft_putchar.c \
-	 ft_putstr.c \
-	 ft_putnbr.c \
-	 ft_puthex.c \
-	 ft_printf.c \
-	 ft_putunsigned.c \
-	 
-OBGS = $(SRCS:.c=.o)
+CFLAGS = -Wall -Wextra -Werror
+OBJ = $(SRC:.c=.o)
+AR = ar -rc
+RM = rm -f
+HEADER = ft_printf.h 
+SRC =  ft_printf.c \
+    ft_c.c \
+	ft_d.c \
+	ft_p.c \
+	ft_s.c \
+	ft_u.c \
+	ft_upperx.c \
+	ft_x.c \
 
-all:${NAME}
+all: $(NAME)
 
-${NAME}:${OBGS}
-	${LIBC} ${NAME} ${OBGS}
+$(NAME):$(OBJ)
+	@$(AR) $@ $^
+
+%.o: %.c $(HEADER)
+	@$(CC) $(CFLAGS) -c $< 
+
 clean:
-	rm -f ${OBGS}
-fclean:clean
-	rm -f ${NAME}
+	@$(RM) $(OBJ)
+
+fclean: clean
+	@$(RM) $(NAME)
+
 re: fclean all
 
 .PHONY: all clean fclean re
