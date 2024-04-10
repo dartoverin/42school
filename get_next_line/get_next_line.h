@@ -17,7 +17,7 @@
 # include <unistd.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 10000
+#  define BUFFER_SIZE 1
 # endif
 
 char	*ft_substr(char const *s, unsigned int start, size_t len);
